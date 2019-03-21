@@ -14,5 +14,10 @@ body, html {
 	padding-right: 30px;
 }
 .nav-item {
-	font-size: 1.3em
+	font-size: 16pt
 }
+.short-disc{
+	font-size: 14pt;
+	text-align: center;
+}
+
