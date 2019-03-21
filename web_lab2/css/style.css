@@ -9,3 +9,10 @@ body, html {
 .navbar-brand img{
 	width: 50px;
 }
+
+.navbar-nav li{
+	padding-right: 30px;
+}
+.nav-item {
+	font-size: 1.3em
+}
