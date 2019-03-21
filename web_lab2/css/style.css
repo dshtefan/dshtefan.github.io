@@ -5,3 +5,7 @@ body, html {
 	height: 100%;
 	font-family: 'El Messiri', sans-serif;
 }
+
+.navbar-brand img{
+	width: 50px;
+}
