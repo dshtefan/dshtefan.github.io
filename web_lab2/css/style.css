@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=El+Messiri:400,500,700&subset=cyrillic');
+
+body, html {
+	width: 100%;
+	height: 100%;
+	font-family: 'El Messiri', sans-serif;
+}
