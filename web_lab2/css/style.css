@@ -6,11 +6,9 @@ body, html {
 	font-family: 'El Messiri', sans-serif;
 	background-color: #f8f9fa;
 }
-
 .navbar-brand img{
 	width: 50px;
 }
-
 .navbar-nav li{
 	padding-right: 30px;
 }
@@ -21,11 +19,20 @@ body, html {
 	font-size: 14pt;
 	text-align: center;
 }
+.text-in-div{
+	background: rgba(255, 255, 255, 0.9);
+}
 .item-text{
-	font-size: 14pt;
+	font-size: 18pt;
 	text-align: center;
 }
-
+.text{
+	color: rgba(0, 0, 0, 0.75);
+	margin-top: 50%;
+}
+a:hover{
+	color: black;
+}
 .item1{
 	background: url('../img/g1.jpg') center center;
 	background-size: 100%;
