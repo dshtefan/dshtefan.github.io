@@ -36,20 +36,18 @@ body, html {
 a:hover{
 	color: black;
 }
-.item1{
-	background: url('../img/g1.jpg') center center;
+.items{
 	background-size: 100%;
 	height: 200px;
+}
+.item1{
+	background: url('../img/g1.jpg') center center;
 }
 .item2{
 	background: url('../img/w1.jpg') center center;
-	background-size: 100%;
-	height: 200px;
 }
 .item3{
 	background: url('../img/s1.jpg') center center;
-	background-size: 100%;
-	height: 200px;
 }
 .formHeader{
 	font-size: 16pt;
