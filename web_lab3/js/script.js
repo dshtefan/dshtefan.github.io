@@ -1,6 +1,5 @@
-
 $(function() {
-  function getQoute(){
+  function getQuote(){
     $.ajax({
       url: "https://api.forismatic.com/api/1.0/",
       jsonp: "jsonp",
@@ -12,8 +11,7 @@ $(function() {
       }
     })
     .done(function(data) {
-      document.getElementById('canvas').innerHTML='<h3>' + data.quoteText + '</h3><h3><em>'+
-      data.quoteAuthor + '</em><h3>';
+      quote = data.quoteText;
      })
   }
 
@@ -39,6 +37,7 @@ $(function() {
         canv1= document.getElementById('canvas'),
         ctx1 = canv.getContext('2d');
     ctx1.drawImage(img, sx, sy, swidth, sheight, x, y, width, height);
+    countLoadImgs++;
   }
 
   function drawImgs(){
@@ -60,21 +59,41 @@ $(function() {
       }
   }
 
+  function drawQuote(){ 
+    if (quote != '' && countLoadImgs == 4){
+      var 
+          canvas = document.getElementById('canvas'),
+          context = canvas.getContext('2d');
+
+      context.fillStyle = 'white';
+      context.font = "italic 20pt Arial";
+      context.fillText(quote, 0, 200)
+      console.log(quote);
+      return;
+    }
+    else{
+       setTimeout(drawQuote, 1);  
+    }
+  }
+
+  document.getElementById('body').innerHTML = '<canvas id="canvas" style="display: block;"></canvas>';
   var 
+      canv= document.getElementById('canvas'),
+      ctx = canv.getContext('2d'),
       quote = '',
-      imgs = new Array();
+      imgs = new Array(),
+      countLoadImgs = 0;
 
 
   for (var i = 0; i < 4; i++)
     imgs[i] = new Image();
 
-  document.getElementById('body').innerHTML = '<canvas id="canvas" style="display: block;"></canvas>';
-  canv= document.getElementById('canvas'),
-  ctx = canv.getContext('2d');
   canv.width = 600;
   canv.height = 600;
 
   getImgs();
   drawImgs();
+  getQuote();
+  drawQuote();
 })
  
