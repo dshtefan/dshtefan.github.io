@@ -22,7 +22,7 @@ $(function() {
         client_id: 'da96c0b1fb1420a7896268dd3dfa36e879766536472eba23f241b8334be25f07',
         count: 4,
         orientation: 'squarish',
-        collections: '357786'
+        collections: '769850'
       }
     })
     .done(function(data) {
@@ -59,6 +59,29 @@ $(function() {
       }
   }
 
+  function cutQuote(context, text, x, y, maxWidth, lineHeight){
+        var words = text.split(" "),
+            countWords = words.length,
+            line = "",
+            countRaws = Math.floor(context.measureText(text).width / 550);
+            
+        y -= (countRaws / 2) * lineHeight;
+        for (var n = 0; n < countWords; n++) {
+            var testLine = line + words[n] + " ",
+                testWidth = context.measureText(testLine).width;
+
+            if (testWidth > maxWidth) {
+                context.fillText(line, x, y);
+                line = words[n] + " ";
+                y += lineHeight;
+            }
+            else {
+                line = testLine;
+            }
+        }
+        context.fillText(line, x, y);
+  }
+
   function drawQuote(){ 
     if (quote != '' && countLoadImgs == 4){
       var 
@@ -67,9 +90,8 @@ $(function() {
 
       context.fillStyle = 'white';
       context.font = "italic 20pt Arial";
-      context.fillText(quote, 0, 200)
-      console.log(quote);
-      return;
+      context.textAlign = "center";
+      cutQuote(context, quote, canvas.width / 2, canvas.height / 2, 550, 40);
     }
     else{
        setTimeout(drawQuote, 1);  
