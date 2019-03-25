@@ -1,4 +1,5 @@
 $(function() {
+  document.getElementById('body').innerHTML = '<canvas id="canvas" style="display: block;"></canvas>'
   var img = new Image();
   var x = 0,
       y = 0,
