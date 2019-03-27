@@ -155,9 +155,17 @@ function generateHTML(){
     body = document.getElementById('body'),
     save = document.createElement('button'),
     next = document.createElement('button'),
-    div = document.createElement('div');
+    div = document.createElement('div'),
+    dbox = document.createElement('div');
 
   canvas.id = 'canvas';
+
+  div.style.width = '600px';
+  dbox.style.width = '600px';
+  dbox.style.position= 'absolute';
+  dbox.style.top= '50%';
+  dbox.style.left= '50%';
+  dbox.style.margin= '-320px 0 0 -320px';
 
   body.style.background = 'rgb(215, 226, 215)';
 
@@ -192,9 +200,10 @@ function generateHTML(){
   next.style.border = '2px solid #008CBA';
   next.style.marginLeft = "430.62px";
 
-  body.appendChild(canvas);
+  div.appendChild(canvas);
   div.appendChild(save);
   div.appendChild(next);
-  body.appendChild(div);
+  dbox.appendChild(div);
+  body.appendChild(dbox);
 }
 
