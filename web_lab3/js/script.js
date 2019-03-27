@@ -4,6 +4,7 @@ var
     quote = '',
     imgs = new Array(),
     countLoadImgs = 0,
+    countDrawImgs = 0,
     canv = document.getElementById('canvas');
 
 main();
@@ -54,6 +55,9 @@ function getImgs(){
     function(data) {
       for (var i = 0; i < 4; i++) {
         imgs[i].src = data[i].urls.small;
+        imgs[i].onload = function(){
+          countLoadImgs++;
+        };
       }
    })
 }
@@ -61,26 +65,42 @@ function getImgs(){
 function drawImg(img, sx, sy, swidth, sheight, x, y, width, height){
   var ctx = canvas.getContext('2d');
   ctx.drawImage(img, sx, sy, swidth, sheight, x, y, width, height);
-  countLoadImgs++;
+  countDrawImgs++;
 }
 
 function drawImgs(){
-  imgs[0].onload = function(){
-    drawImg(imgs[0], imgs[0].naturalWidth / 2 - imgs[0].naturalWidth / 4, 0, imgs[0].naturalWidth / 2,
-      imgs[0].naturalHeight, 0, 0, 200, 400);
-  };
-  imgs[1].onload = function(){
-    drawImg(imgs[1], 0, 0, imgs[1].naturalWidth, imgs[1].naturalHeight,
-       200, 0, 400, 400);
-  };
-  imgs[2].onload = function(){
-      drawImg(imgs[2], 0, 0, imgs[2].naturalWidth, imgs[2].naturalHeight,
-        0, 400, 200, 200);
-    };
-    imgs[3].onload = function(){
-      drawImg( imgs[3], 0, imgs[3].naturalHeight / 2 - imgs[3].naturalHeight / 4, imgs[3].naturalWidth,
-        imgs[3].naturalHeight / 2, 200, 400, 400, 200);
+  if (countLoadImgs == 4){
+    var
+        x = 0,
+        y = 0,
+        ox = 200 + Math.floor(Math.random() + 0.5) * 200,
+        oy = 200 + Math.floor(Math.random() + 0.5) * 200,
+        h = oy,
+        par = [];
+    for(var i = 0; i < 2; i++){
+      w = ox;
+      par = getParams(imgs[i * 2], w, h);
+      drawImg(imgs[i * 2], par[0], par[1], par[2], par[3], x, y, w, h);
+      x = ox;
+      w = 600 - w;
+      par = getParams(imgs[i * 2 + 1], w, h);
+      drawImg(imgs[i * 2 + 1], par[0], par[1], par[2], par[3], x, y, w, h);
+      x = 0;
+      y = oy;
+      h = 600 - h;
     }
+  } else{
+     setTimeout(drawImgs, 1);  
+  }
+}
+function getParams(img, width, height){
+  if (width != height)
+    if (width < height)
+      return [img.naturalWidth / 2 - img.naturalWidth / 4, 0, img.naturalWidth / 2, img.naturalHeight]
+    else 
+      return [0, img.naturalHeight / 2 - img.naturalHeight / 4, img.naturalWidth, img.naturalHeight / 2]
+  else
+    return [0, 0, img.naturalWidth, img.naturalHeight]
 }
 
 function cutQuote(context, text, x, y, maxWidth, lineHeight){
@@ -109,7 +129,7 @@ function cutQuote(context, text, x, y, maxWidth, lineHeight){
 }
 
 function drawQuote(){ 
-  if (quote != '' && countLoadImgs == 4){
+  if (quote != '' && countDrawImgs == 4){
     var context = canvas.getContext('2d');
 
     context.fillStyle = 'white';
