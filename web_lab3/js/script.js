@@ -172,8 +172,6 @@ function generateHTML(){
   dbox.style.left= '50%';
   dbox.style.margin= '-320px 0 0 -320px';
 
-  body.style.background = 'rgb(215, 226, 215)';
-
   //"Save" button styles
   save.id = 'save';
   save.innerHTML = 'Save';
