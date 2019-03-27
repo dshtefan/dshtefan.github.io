@@ -10,26 +10,27 @@ $(function() {
         format: "jsonp"
       }
     })
-    .done(function(data) {
-      quote = data.quoteText;
+    .done(
+      function(data) {
+        quote = data.quoteText;
      })
   }
 
   function getImgs() {
     $.ajax({
-      url: "https://api.unsplash.com/photos/random",
+      url: "https://api.codetabs.com/v1/proxy",
       data: {
-        client_id: 'da96c0b1fb1420a7896268dd3dfa36e879766536472eba23f241b8334be25f07',
-        count: 4,
-        orientation: 'squarish',
-        collections: '769850'
+        quest : 'https://api.unsplash.com/photos/random?' + 
+              'client_id=92b75c153abd51b74cd52de760b4ceb2abb7c532b6a5c622bc5268fa1c35209d' + '&' +
+              'count=4' + '&' + 'orientation=squarish' + '&' + 'collections=769850'
       }
     })
-    .done(function(data) {
-      for (var i = 0 ; i < 4; i++) {
-        imgs[i].src = data[i].urls.regular;
-      }
-    })
+    .done(
+      function(data) {
+        for (var i = 0; i < 4; i++) {
+          imgs[i].src = data[i].urls.small;
+        }
+     })
   }
 
   function drawImg(img, sx, sy, swidth, sheight, x, y, width, height){
@@ -98,17 +99,27 @@ $(function() {
     }
   }
 
-  document.getElementById('body').innerHTML = '<canvas id="canvas" style="display: block;"></canvas>';
   var 
-      canv= document.getElementById('canvas'),
+      canvas = document.createElement('canvas'),
+      body = document.getElementById('body'),
+      input = document.createElement('input');
+  
+  canvas.id = 'canvas';
+  body.appendChild(canvas);
+  body.innerHTML = body.innerHTML + 
+                  '<div><input type="button" value="Save" OnClick="clickB();"></div>';
+  var 
+      canv = document.getElementById('canvas'),
       ctx = canv.getContext('2d'),
       quote = '',
       imgs = new Array(),
       countLoadImgs = 0;
 
 
-  for (var i = 0; i < 4; i++)
+  for (var i = 0; i < 4; i++){
     imgs[i] = new Image();
+    imgs[i].crossOrigin="anonymous";
+  }
 
   canv.width = 600;
   canv.height = 600;
@@ -118,4 +129,13 @@ $(function() {
   getQuote();
   drawQuote();
 })
- 
+
+function clickB(){
+  var 
+      canv= document.getElementById('canvas');
+  var dataURL = canv.toDataURL("image/jpg");
+  var link = document.createElement("a");
+  link.href = dataURL;
+  link.download = "quote.jpg";
+  link.click();
+ }
