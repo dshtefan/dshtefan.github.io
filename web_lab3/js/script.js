@@ -1,15 +1,21 @@
 generateHTML();
 
 var
-    quote = '',
-    imgs = new Array(),
-    countLoadImgs = 0,
-    countDrawImgs = 0,
-    canv = document.getElementById('canvas');
+    quote,
+    imgs,
+    countLoadImgs,
+    countDrawImgs,
+    canv;
 
 main();
 
 function main(){
+
+  quote = null;
+  imgs = new Array();
+  countLoadImgs = 0;
+  countDrawImgs = 0;
+  canv = document.getElementById('canvas');
 
   for (var i = 0; i < 4; i++){
     imgs[i] = new Image();
@@ -47,7 +53,7 @@ function getImgs(){
     url: "https://api.codetabs.com/v1/proxy",
     data: {
       quest : 'https://api.unsplash.com/photos/random?' + 
-            'client_id=92b75c153abd51b74cd52de760b4ceb2abb7c532b6a5c622bc5268fa1c35209d' + '&' +
+            'client_id=38817c5fb9e28bf5f74592a4350fa8d4aff557c0406bdab779f2735e6d13fc31' + '&' +
             'count=4' + '&' + 'orientation=squarish' + '&' + 'collections=769850'
     }
   })
@@ -93,6 +99,7 @@ function drawImgs(){
      setTimeout(drawImgs, 1);  
   }
 }
+
 function getParams(img, width, height){
   if (width != height)
     if (width < height)
@@ -129,7 +136,7 @@ function cutQuote(context, text, x, y, maxWidth, lineHeight){
 }
 
 function drawQuote(){ 
-  if (quote != '' && countDrawImgs == 4){
+  if (quote != null && countDrawImgs == 4){
     var context = canvas.getContext('2d');
 
     context.fillStyle = 'white';
@@ -151,10 +158,13 @@ function generateHTML(){
   canvas.id = 'canvas';
   body.appendChild(canvas);
   body.innerHTML = body.innerHTML + 
-                  '<div><input type="button" value="Save" OnClick="clickB();"></div>';
+                  '<div>' + 
+                    '<input type="button" value="Save" OnClick="clickSave();">' +
+                    '<input type="button" value="Next" OnClick="clickNext();">' +
+                  '</div>';
 }
 
-function clickB(){
+function clickSave(){
   var 
       canv= document.getElementById('canvas');
       dataURL = canv.toDataURL("image/jpg");
@@ -163,4 +173,8 @@ function clickB(){
   link.href = dataURL;
   link.download = "quote.jpg";
   link.click();
+}
+
+function clickNext(){
+  main();
 }
