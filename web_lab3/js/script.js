@@ -53,8 +53,8 @@ function getImgs(){
     url: "https://api.codetabs.com/v1/proxy",
     data: {
       quest : 'https://api.unsplash.com/photos/random?' + 
-            'client_id=38817c5fb9e28bf5f74592a4350fa8d4aff557c0406bdab779f2735e6d13fc31' + '&' +
-            'count=4' + '&' + 'orientation=squarish' + '&' + 'collections=769850'
+                'client_id=897f4ae4e59bf8e8441500a6ef35d89ca14a704bfc88734a77a5c2cf816bd540' + '&' +
+                'count=4' + '&' + 'orientation=squarish' + '&' + 'collections=762960'
     }
   })
   .done(
@@ -140,7 +140,7 @@ function drawQuote(){
     var context = canvas.getContext('2d');
 
     context.fillStyle = 'white';
-    context.font = "italic 20pt Arial";
+    context.font = "italic 22pt Arial";
     context.textAlign = "center";
     cutQuote(context, quote, canvas.width / 2, canvas.height / 2, 550, 40);
   }
@@ -153,28 +153,48 @@ function generateHTML(){
   var 
     canvas = document.createElement('canvas'),
     body = document.getElementById('body'),
-    input = document.createElement('input');
+    save = document.createElement('button'),
+    next = document.createElement('button'),
+    div = document.createElement('div');
 
   canvas.id = 'canvas';
+
+  body.style.background = 'rgb(215, 226, 215)';
+
+  //"Save" button styles
+  save.id = 'save';
+  save.innerHTML = 'Save';
+  save.style.backgroundColor = '#4CAF50';
+  save.style.border = 'none';
+  save.style.color =  'white';
+  save.style.padding = '10px 25px';
+  save.style.fontSize = '16px';
+  save.onclick = 
+    function(){
+      var 
+          canv= document.getElementById('canvas');
+          dataURL = canv.toDataURL("image/jpg");
+          link = document.createElement("a");
+
+      link.href = dataURL;
+      link.download = "quote.jpg";
+      link.click();
+    };
+
+  //"Next" button styles
+  next.id = 'next';
+  next.onclick = function () { main(); };
+  next.innerHTML = 'Next';
+  next.style.backgroundColor = 'white';
+  next.style.color =  'black';
+  next.style.padding = '8px 23px';
+  next.style.fontSize = '16px';
+  next.style.border = '2px solid #008CBA';
+  next.style.marginLeft = "430.62px";
+
   body.appendChild(canvas);
-  body.innerHTML = body.innerHTML + 
-                  '<div>' + 
-                    '<input type="button" value="Save" OnClick="clickSave();">' +
-                    '<input type="button" value="Next" OnClick="clickNext();">' +
-                  '</div>';
+  div.appendChild(save);
+  div.appendChild(next);
+  body.appendChild(div);
 }
 
-function clickSave(){
-  var 
-      canv= document.getElementById('canvas');
-      dataURL = canv.toDataURL("image/jpg");
-      link = document.createElement("a");
-
-  link.href = dataURL;
-  link.download = "quote.jpg";
-  link.click();
-}
-
-function clickNext(){
-  main();
-}
