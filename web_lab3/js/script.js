@@ -54,7 +54,7 @@ function getImgs(){
     data: {
       quest : 'https://api.unsplash.com/photos/random?' + 
                 'client_id=897f4ae4e59bf8e8441500a6ef35d89ca14a704bfc88734a77a5c2cf816bd540' + '&' +
-                'count=4' + '&' + 'orientation=squarish' + '&' + 'collections=762960'
+                'count=4' + '&' + 'orientation=squarish'
     }
   })
   .done(
@@ -94,6 +94,11 @@ function drawImgs(){
       x = 0;
       y = oy;
       h = 600 - h;
+
+      //Blackout
+      var ctx = canvas.getContext('2d');
+      ctx.fillStyle = "rgba(0,0,0,0.35)";
+      ctx.fillRect(0,0,600,600);
     }
   } else{
      setTimeout(drawImgs, 1);  
