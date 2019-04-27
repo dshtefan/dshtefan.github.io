@@ -29,20 +29,23 @@ footer{
    height: 100px;
    background-color: rgba(33, 37, 41, 0.9);
 }
+.author{
+   padding: 40px; 0;
+   font-size: 16px;
+   height: 18px;
+}
+#author:hover{
+   color: rgba(255, 255, 255, 0.7);
+}
+#author{
+   color: white;
+   text-decoration-line: none;
+}
 
 /* Основная часть */
 
-
-.main{
-   height: 100%;
-   margin-top: 1em;
-}
 hr{
-   display: block;
-   height: 1px;
-   border: 0;
    border-top: 1px solid rgba(33, 37, 41, 0.5) !important;
-   margin: 1em 0;
 }
 .post_body{
    margin-top: 20px;
@@ -50,4 +53,9 @@ hr{
 }
 .post_title{
    font-size: 26px;
+   font-weight: bold;
+}
+.post{
+   margin-top: 40px;
+   margin-bottom: 40px;
 }
