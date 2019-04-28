@@ -1,0 +1,12 @@
+/* Меню навигации */
+
+.navbar{
+   background-color: rgba(33, 37, 41, 0.9);
+}
+.navbar-brand{
+   font-size: 35px !important;
+   font-weight: bold;
+}
+.nav-link{
+   font-size: 18px;
+}

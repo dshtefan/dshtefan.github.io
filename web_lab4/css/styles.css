@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i&subset=cyrillic');
+
+*{
+   margin: 0px;
+   padding: 0px;
+}
+body, html{
+   width: 100%;
+   height: 100%;
+   font-family: 'Playfair Display', serif !important;
+}
