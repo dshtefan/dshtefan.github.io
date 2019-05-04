@@ -11,13 +11,13 @@ $('#send').click (function () {
 			$('#send').attr ("disabled", "disabled");
 		},
 		success: function(data) {
-			console.log(data);
 			if (data == true) {
 				$('#inputTitle').val ("");
 				$('#inputText').val ("");
 				$('#send').text ("Опубликовано");
 				$('#inputTitle').css ("border-color", "#60fc8c");
 				$('#inputText').css ("border-color", "#60fc8c");
+				window.location.reload();
 			} else {
 				if (data == false)
 					alert ("Что-то пошло не так!");

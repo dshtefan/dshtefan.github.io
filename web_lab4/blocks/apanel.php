@@ -1,5 +1,5 @@
 <div class="main">
-   <div class="apanel col-sm-10 offset-sm-1 col-md-8 offset-md-2">
+   <div class="apanel col-sm-10 offset-sm-1 col-md-8 offset-md-2 mb-5">
       <div class="container">
      		<p class="formHeader">Добавьте пост</p>
      		<form>
@@ -15,4 +15,7 @@
      		</form>
      	</div>
    </div>
+   <?php
+      require_once "blocks/apanelDel.php"
+   ?>
 </div>

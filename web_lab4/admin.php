@@ -5,6 +5,7 @@
       require_once "blocks/head.php";
    ?>
    <link rel="stylesheet" href="css/apanel.css">
+   <link rel="stylesheet" href="css/posts.css">
 </head>
 <body>
    <?php
@@ -13,5 +14,6 @@
    ?>
    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
    <script src="js/createNewPost.js"></script>
+   <script src="js/links.js"></script>
 </body>
 </html>
